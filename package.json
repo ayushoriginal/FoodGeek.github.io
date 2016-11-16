@@ -1,0 +1,106 @@
+{
+  "name": "place-my-order",
+  "version": "0.10.0",
+  "description": "",
+  "homepage": "",
+  "author": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "scripts": {
+    "api": "place-my-order-api --port 7070",
+    "test": "testee src/test.html --browsers firefox --reporter Spec",
+    "start": "done-serve --proxy http://localhost:7070 --port 8080",
+    "develop": "done-serve --develop --proxy http://localhost:7070 --port 8080",
+    "document": "documentjs",
+    "build": "node build"
+  },
+  "engines": {
+    "node": "5.8"
+  },
+  "main": "production.html",
+  "files": [
+    "src"
+  ],
+  "keywords": [],
+  "system": {
+    "main": "place-my-order/index.stache!done-autorender",
+    "directories": {
+      "lib": "src"
+    },
+    "configDependencies": [
+      "live-reload",
+      "node_modules/can-zone/register"
+    ],
+    "npmAlgorithm": "flat",
+    "envs": {
+      "server-production": {
+        "renderingBaseURL": "https://place-my-order.firebaseapp.com/"
+      }
+    }
+  },
+  "dependencies": {
+    "bit-tabs": "^0.3.0-pre.0",
+    "can-component": "^3.0.0-pre.8",
+    "can-connect": "^0.6.0-pre.4",
+    "can-define": "^0.7.4",
+    "can-route": "^3.0.0-pre.5",
+    "can-route-pushstate": "^3.0.0-pre.3",
+    "can-stache": "^3.0.0-pre.6",
+    "can-zone": "^0.5.5",
+    "done-autorender": "^0.9.0-pre.0",
+    "done-component": "^0.6.0-pre.2",
+    "done-css": "~2.1.0-pre.0",
+    "done-serve": "^0.3.0-pre.0",
+    "generator-donejs": "^0.10.0-pre.0",
+    "place-my-order-api": "^0.4.4",
+    "place-my-order-assets": "^0.1.7",
+    "steal": "^0.16.0",
+    "steal-platform": "0.0.4",
+    "steal-socket.io": "^2.0.3",
+    "steal-stache": "^3.0.0-pre.2"
+  },
+  "devDependencies": {
+    "can-fixture": "^0.4.0-pre.2",
+    "documentjs": "^0.4.4",
+    "donejs-cli": "^0.10.0-pre.0",
+    "donejs-deploy": "^0.4.0",
+    "funcunit": "^3.0.0",
+    "steal-cordova": "^0.1.3",
+    "steal-nw": "^0.1.4",
+    "steal-qunit": "^0.1.1",
+    "steal-tools": "^0.16.0",
+    "testee": "^0.2.4"
+  },
+  "window": {
+    "width": 1000,
+    "height": 600,
+    "toolbar": false
+  },
+  "donejs": {
+    "deploy": {
+      "root": "dist",
+      "services": {
+        "production": {
+          "type": "firebase",
+          "config": {
+            "firebase": "place-my-order",
+            "public": "./dist",
+            "headers": [
+              {
+                "source": "/**",
+                "headers": [
+                  {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
